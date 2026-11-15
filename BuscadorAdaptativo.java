@@ -1,24 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Implementacion del Buscador Adaptativo (Ejercicio N. 30).
- * 
- * Reglas funcionales del ejercicio:
- * 1. Analiza las caracteristicas del arreglo.
- * 2. Determina si los datos estan ordenados (creciente, decreciente o desordenados).
- * 3. Si estan desordenados, ejecuta Busqueda Lineal.
- * 4. Si estan ordenados, ejecuta Busqueda Binaria.
- * 5. Si existen duplicados, obtiene el primer y ultimo indice (lower/upper bound).
- * 6. Informa que algoritmo fue seleccionado de forma automatica.
- * 7. Muestra todas las posiciones encontradas.
- * 8. Registra y compara la cantidad de comparaciones realizadas.
- * 
- * Asignatura: Estructuras de Datos - Unidad 3
- * Taller Practico: Algoritmos de Busqueda
- * Tutor: John Carlos Arrieta Arrieta
- * Estudiante: Cristian Torres
- */
 public class BuscadorAdaptativo {
 
     public enum EstadoOrden {
@@ -28,9 +10,6 @@ public class BuscadorAdaptativo {
         VACIO_O_UNITARIO
     }
 
-    /**
-     * Paso 1 y 2: Analiza el arreglo para determinar su estado de ordenamiento en O(n)
-     */
     public static EstadoOrden determinarEstadoOrden(int[] a) {
         if (a == null || a.length <= 1) {
             return EstadoOrden.VACIO_O_UNITARIO;
@@ -53,10 +32,6 @@ public class BuscadorAdaptativo {
         return EstadoOrden.DESORDENADO;
     }
 
-    /**
-     * Metodo principal adaptativo:
-     * Inspecciona el arreglo y despacha dinamicamente al algoritmo optimo.
-     */
     public static ResultadoBusqueda buscar(int[] a, int target) {
         if (a == null || a.length == 0) {
             return new ResultadoBusqueda(false, -1, -1, new ArrayList<>(), 0,
@@ -84,9 +59,6 @@ public class BuscadorAdaptativo {
         return resultado;
     }
 
-    /**
-     * Busqueda lineal con conteo exacto de comparaciones de elementos y deteccion de duplicados.
-     */
     public static ResultadoBusqueda buscarLinealConMetricas(int[] a, int target, String estadoTexto, long inicioTiempo) {
         int comparaciones = 0;
         List<Integer> posiciones = new ArrayList<>();
@@ -113,14 +85,9 @@ public class BuscadorAdaptativo {
         );
     }
 
-    /**
-     * Busqueda binaria en arreglo creciente con variantes Lower Bound y Upper Bound
-     * para encontrar de forma eficiente el primer indice, el ultimo indice y el rango de duplicados en O(log n).
-     */
     public static ResultadoBusqueda buscarBinariaCrecienteConMetricas(int[] a, int target, String estadoTexto, long inicioTiempo) {
-        int[] contadorComp = new int[1]; // Contador mutable de comparaciones
+        int[] contadorComp = new int[1];
 
-        // 1. Lower Bound: Primer indice donde a[mid] >= target
         int first = lowerBound(a, target, contadorComp);
 
         boolean existe = (first < a.length && a[first] == target);
@@ -129,7 +96,7 @@ public class BuscadorAdaptativo {
         int last = -1;
 
         if (existe) {
-            // 2. Upper Bound - 1: Ultimo indice donde a[mid] == target
+
             last = lastIndexOfSorted(a, target, contadorComp);
             for (int i = first; i <= last; i++) {
                 posiciones.add(i);
@@ -144,9 +111,6 @@ public class BuscadorAdaptativo {
         );
     }
 
-    /**
-     * Lower bound en O(log n): Primer indice >= target
-     */
     private static int lowerBound(int[] a, int target, int[] comp) {
         int lo = 0;
         int hi = a.length;
@@ -162,9 +126,6 @@ public class BuscadorAdaptativo {
         return lo;
     }
 
-    /**
-     * Upper bound en O(log n): Ultimo indice == target
-     */
     private static int lastIndexOfSorted(int[] a, int target, int[] comp) {
         int lo = 0;
         int hi = a.length;
@@ -181,9 +142,6 @@ public class BuscadorAdaptativo {
         return (idx >= 0 && a[idx] == target) ? idx : -1;
     }
 
-    /**
-     * Variante binaria para arreglos ordenados de forma decreciente.
-     */
     private static ResultadoBusqueda buscarBinariaDecrecienteConMetricas(int[] a, int target, String estadoTexto, long inicioTiempo) {
         int comparaciones = 0;
         int lo = 0;
@@ -208,7 +166,7 @@ public class BuscadorAdaptativo {
         int last = -1;
 
         if (posEncontrada != -1) {
-            // Expandir para duplicados contiguos
+
             first = posEncontrada;
             while (first > 0 && a[first - 1] == target) {
                 first--;

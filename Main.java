@@ -2,17 +2,6 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Clase principal y menu demostrativo para el Taller Practico: Buscador Adaptativo.
- * 
- * Permite ejecutar casos de prueba guiados y comparaciones experimentales
- * entre Busqueda Lineal O(n) y Busqueda Binaria O(log n).
- * 
- * Asignatura: Estructuras de Datos - Unidad 3
- * Tutor: John Carlos Arrieta Arrieta
- * Estudiante: Cristian Torres
- * Ejercicio: N. 30 - Buscador Adaptativo
- */
 public class Main {
 
     private final Scanner scanner;
@@ -77,7 +66,6 @@ public class Main {
         System.out.println("===============================================================");
     }
 
-    // Caso 1: Arreglo desordenado
     private void casoPruebaDesordenado() {
         System.out.println("--- CASO 1: ARREGLO DESORDENADO ---");
         int[] arreglo = {45, 12, 89, 23, 7, 56, 23, 90, 11, 23};
@@ -90,7 +78,6 @@ public class Main {
         System.out.println(res);
     }
 
-    // Caso 2: Arreglo ordenado sin duplicados
     private void casoPruebaOrdenadoSinDuplicados() {
         System.out.println("--- CASO 2: ARREGLO ORDENADO SIN DUPLICADOS ---");
         int[] arreglo = {5, 12, 19, 28, 34, 45, 61, 73, 88, 92, 105, 120};
@@ -103,7 +90,6 @@ public class Main {
         System.out.println(res);
     }
 
-    // Caso 3: Arreglo ordenado con duplicados
     private void casoPruebaOrdenadoConDuplicados() {
         System.out.println("--- CASO 3: ARREGLO ORDENADO CON DUPLICADOS (LOWER / UPPER BOUND) ---");
         int[] arreglo = {10, 20, 30, 30, 30, 30, 30, 45, 60, 75, 90};
@@ -116,7 +102,6 @@ public class Main {
         System.out.println(res);
     }
 
-    // Caso 4: Elemento inexistente
     private void casoPruebaElementoInexistente() {
         System.out.println("--- CASO 4: ELEMENTO INEXISTENTE ---");
         int[] arreglo = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
@@ -129,7 +114,6 @@ public class Main {
         System.out.println(res);
     }
 
-    // Caso 5: Arreglo personalizado
     private void casoPruebaPersonalizado() {
         System.out.println("--- CASO 5: INGRESO DE ARREGLO PERSONALIZADO ---");
         System.out.print("Ingrese los enteros separados por espacios o comas: ");
@@ -147,7 +131,6 @@ public class Main {
         System.out.println(res);
     }
 
-    // Caso 6: Comparativa experimental de rendimiento
     private void casoPruebaComparativaExperimentalRendimiento() {
         comparativaExperimentalRendimiento();
     }
@@ -161,16 +144,13 @@ public class Main {
             arreglo[i] = i * 2;
         }
 
-        // Buscar el ultimo elemento (peor caso para lineal)
         int objetivo = (n - 1) * 2;
         System.out.println("Buscando el elemento en la ultima posicion: " + objetivo);
         System.out.println();
 
-        // 1. Ejecucion Lineal
         long t1 = System.nanoTime();
         ResultadoBusqueda resLineal = BuscadorAdaptativo.buscarLinealConMetricas(arreglo, objetivo, "ORDENADO (Forzado Lineal)", t1);
 
-        // 2. Ejecucion Binaria
         long t2 = System.nanoTime();
         ResultadoBusqueda resBinaria = BuscadorAdaptativo.buscarBinariaCrecienteConMetricas(arreglo, objetivo, "ORDENADO (Binaria)", t2);
 

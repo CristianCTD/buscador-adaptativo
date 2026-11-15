@@ -1,17 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Encapsula el resultado completo de una operacion de busqueda adaptativa.
- * Almacena el algoritmo seleccionado, el estado del arreglo, posiciones encontradas,
- * cantidad de ocurrencias y metricas de rendimiento (comparaciones y tiempo).
- * 
- * Asignatura: Estructuras de Datos - Unidad 3
- * Taller Practico: Algoritmos de Busqueda
- * Tutor: John Carlos Arrieta Arrieta
- * Estudiante: Cristian Torres
- * Ejercicio: N. 30 - Buscador Adaptativo
- */
 public class ResultadoBusqueda {
     private final boolean encontrado;
     private final int primerIndice;
