@@ -1,7 +1,7 @@
 # Buscador Adaptativo: Algoritmos de Búsqueda Lineal vs. Binaria
 
 **Asignatura:** Estructuras de Datos  
-**Unidad:** Unidad 3 - Taller Práctico: Algoritmos de Búsqueda  
+**Unidad:** Unidad 2 - Taller Práctico: Algoritmos de Búsqueda  
 **Programa:** Ingeniería de Software  
 **Universidad:** Universidad de Cartagena  
 **Tutor:** John Carlos Arrieta Arrieta  
